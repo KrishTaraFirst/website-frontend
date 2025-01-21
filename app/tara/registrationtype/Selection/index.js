@@ -45,8 +45,6 @@ const MovingCardTabs = () => {
 
         localStorage.setItem("user", JSON.stringify(userDetails));
         setSelectedUserType(selectedType);
-
-        // router.push(`/tara/registrationtype/${selectedType}`);
       } else {
         alert("Something went Wrong");
       }
@@ -80,9 +78,6 @@ const MovingCardTabs = () => {
     if (!userDetails.user_kyc) {
       setSelectedUserType(userDetails.user_type);
     }
-    // userDetails.user_type = selectedType;
-
-    // localStorage.setItem("user", JSON.stringify(userDetails));
   }, [selectedType]);
   return (
     <>
@@ -122,14 +117,8 @@ const MovingCardTabs = () => {
             p: 0.5,
             position: "relative",
             transition: "transform 0.6s ease-in-out",
-            "& .MuiTabs-indicator": {
-              // display: "none",
-              // backgroundColor: "rgb(215 217 219)",
-              // borderRadius: 2,
-              // borderBottomLeftRadius: "50px 20px",
-            },
+            "& .MuiTabs-indicator": {},
             backgroundColor: "#d7d9db",
-            // borderRadius: 2,
             borderTopLeftRadius: "8px",
             borderTopRightRadius: "8px",
             display: "flex",
@@ -148,7 +137,6 @@ const MovingCardTabs = () => {
               padding: "30px 20px", // Reduce padding for smaller screens
               minWidth: "150px", // Set a minimum width
               flex: "1 1 auto", // Flex-grow for responsiveness
-              // borderRadius: 2,
               borderTopLeftRadius: "8px",
               borderTopRightRadius: "8px",
               boxShadow:
@@ -183,6 +171,29 @@ const MovingCardTabs = () => {
             }}
             onClick={() => setSelectedType("cafirm")}
           />
+          <Tab
+            label={getTabLabel(
+              "Tax Consultant",
+              "Provides tax advice and support to individuals, businesses, and organizations",
+              selectedIndex === 1
+            )}
+            sx={{
+              textTransform: "none",
+              padding: "30px 20px", // Reduce padding for smaller screens
+              minWidth: "150px", // Set a minimum width
+              flex: "1 1 auto", // Flex-grow for responsiveness
+              // borderRadius: 2,
+              borderTopLeftRadius: "8px",
+              borderTopRightRadius: "8px",
+              boxShadow:
+                selectedIndex === 1 ? "0 4px 10px rgba(0, 0, 0, 0.2)" : "none",
+              backgroundColor: selectedIndex === 1 ? "white" : "#d7d9db",
+              transition: "background-color 0.3s ease, box-shadow 0.3s ease",
+              cursor: "pointer",
+              textAlign: "center",
+            }}
+            onClick={() => setSelectedType("individual")}
+          />
         </Tabs>
 
         {/* Next Button */}
@@ -194,17 +205,6 @@ const MovingCardTabs = () => {
             mt: 4,
           }}
         >
-          {/* <Link href= '/registrstiontype/individual'>
-          <a
-            variant="contained"
-            color="primary"
-            sx={{ px: 5 }}
-            onClick={handleNext}
-            // disabled={!selectedType} // Disable the button if no type is selected
-          >
-            Skip if You are an Individual
-          </a>
-        </Link> */}
           <Link
             color="primary"
             style={{ cursor: "pointer" }}
@@ -217,7 +217,6 @@ const MovingCardTabs = () => {
             sx={{ mr: 2 }}
           >
             Skip if you're an Individual
-            {/* <i class="fa-solid fa-arrow-right" /> */}
           </Link>
 
           <Button
@@ -225,7 +224,7 @@ const MovingCardTabs = () => {
             color="primary"
             sx={{ px: 5 }}
             onClick={handleNext}
-            disabled={!selectedType} // Disable the button if no type is selected
+            disabled={!selectedType}
           >
             Next
           </Button>
